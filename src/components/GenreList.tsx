@@ -1,6 +1,7 @@
 import useGenres, { Genre } from "../hooks/UseGenres.ts";
 import {
   Button,
+  Heading,
   HStack,
   Image,
   List,
@@ -24,6 +25,9 @@ export const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
   }
   return (
     <>
+      <Heading fontSize="2xl" marginBottom={2}>
+        Genre
+      </Heading>
       <List>
         {genres.map((g) => (
           <ListItem key={g.id} paddingY={1}>
@@ -36,6 +40,8 @@ export const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
               <Button
                 fontSize="lg"
                 variant="link"
+                whiteSpace="normal"
+                textAlign="left"
                 fontWeight={g.id === selectedGenre?.id ? "bold" : "normal"}
                 onClick={() => onSelectGenre(g)}
               >

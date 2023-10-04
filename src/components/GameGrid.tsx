@@ -3,9 +3,14 @@ import useGames from "../hooks/UseGames.ts";
 import { GameCard } from "./GameCard.tsx";
 import { GameCardSkeleton } from "./GameCardSkeleton.tsx";
 import { GameCardContainer } from "./GameCardContainer.tsx";
+import { Genre } from "../hooks/UseGenres.ts";
 
-export const GameGrid = () => {
-  const { data: games, error, isLoading } = useGames();
+interface Props {
+  selectedGenre: Genre | null;
+}
+
+export const GameGrid = ({ selectedGenre }: Props) => {
+  const { data: games, error, isLoading } = useGames(selectedGenre);
   const skeletonNums = [1, 2, 3, 4, 5, 6];
   return (
     <>

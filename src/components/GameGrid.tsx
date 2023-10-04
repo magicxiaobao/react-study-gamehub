@@ -5,7 +5,7 @@ import { GameCardSkeleton } from "./GameCardSkeleton.tsx";
 import { GameCardContainer } from "./GameCardContainer.tsx";
 
 export const GameGrid = () => {
-  const { games, error, isLoading } = useGames();
+  const { data: games, error, isLoading } = useGames();
   const skeletonNums = [1, 2, 3, 4, 5, 6];
   return (
     <>
@@ -17,12 +17,12 @@ export const GameGrid = () => {
       >
         {isLoading &&
           skeletonNums.map((s) => (
-            <GameCardContainer>
+            <GameCardContainer key={s}>
               <GameCardSkeleton key={s} />
             </GameCardContainer>
           ))}
         {games.map((g) => (
-          <GameCardContainer>
+          <GameCardContainer key={g.id}>
             <GameCard key={g.id} game={g} />
           </GameCardContainer>
         ))}

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 
 const axiosInstance = axios.create({
   baseURL: "https://api.rawg.io/api",
@@ -7,4 +7,23 @@ const axiosInstance = axios.create({
   },
 });
 
-export default axiosInstance;
+interface DataListResponse<T> {
+  count: number;
+  results: T[];
+}
+
+class ApiClient<T> {
+  endpoint: string;
+
+  constructor(endpoint: string) {
+    this.endpoint = endpoint;
+  }
+
+  getAll(config?: AxiosRequestConfig) {
+    return axiosInstance
+      .get<DataListResponse<T>>(this.endpoint, config)
+      .then((res) => res.data);
+  }
+}
+
+export default ApiClient;

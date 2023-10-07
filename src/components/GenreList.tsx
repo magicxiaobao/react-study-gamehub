@@ -1,4 +1,4 @@
-import useGenres, { Genre } from "../hooks/UseGenres.ts";
+import useGenres from "../hooks/UseGenres.ts";
 import {
   Button,
   Heading,
@@ -9,6 +9,7 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import getCroppedImageUrl from "../services/image-url.ts";
+import { Genre } from "../services/genreService.ts";
 
 interface Props {
   onSelectGenre: (genre: Genre) => void;
@@ -16,7 +17,7 @@ interface Props {
 }
 
 export const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
-  const { data: genres, isLoading, error } = useGenres();
+  const { data, isLoading, error } = useGenres();
   if (error) {
     return null;
   }
@@ -29,7 +30,7 @@ export const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
         Genre
       </Heading>
       <List>
-        {genres.map((g) => (
+        {data?.map((g) => (
           <ListItem key={g.id} paddingY={1}>
             <HStack>
               <Image

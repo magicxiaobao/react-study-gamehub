@@ -1,34 +1,22 @@
-import useData from "./UseData.tsx";
 import { GameQuery } from "../App.tsx";
-
-export interface Platform {
-  id: number;
-  name: string;
-  slug: string;
-}
-
-export interface Game {
-  id: number;
-  name: string;
-  background_image: string;
-  parent_platforms: { platform: Platform }[];
-  metacritic: number;
-  rating_top: number;
-}
+import gameService, { Game } from "../services/gameService.ts";
+import { useQuery } from "@tanstack/react-query";
 
 const useGames = (gameQuery: GameQuery | null) => {
-  return useData<Game>(
-    "/games",
-    {
-      params: {
-        genres: gameQuery?.genre?.id,
-        parent_platforms: gameQuery?.platform?.id,
-        ordering: gameQuery?.sortOrder,
-        search: gameQuery?.searchText,
-      },
-    },
-    [gameQuery],
-  );
+  return useQuery<Game[], Error, Game[]>({
+    queryKey: ["games", gameQuery],
+    queryFn: () =>
+      gameService
+        .getAll({
+          params: {
+            genres: gameQuery?.genre?.id,
+            parent_platforms: gameQuery?.platform?.id,
+            ordering: gameQuery?.sortOrder,
+            search: gameQuery?.searchText,
+          },
+        })
+        .then((res) => res.results),
+  });
 };
 
 export default useGames;

@@ -1,21 +1,32 @@
 import { GameQuery } from "../App.tsx";
 import gameService, { Game } from "../services/gameService.ts";
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { DataListResponse } from "../services/api-client.ts";
 
 const useGames = (gameQuery: GameQuery | null) => {
-  return useQuery<Game[], Error, Game[]>({
+  return useInfiniteQuery<
+    DataListResponse<Game>,
+    Error,
+    DataListResponse<Game>
+  >({
     queryKey: ["games", gameQuery],
-    queryFn: () =>
-      gameService
-        .getAll({
-          params: {
-            genres: gameQuery?.genre?.id,
-            parent_platforms: gameQuery?.platform?.id,
-            ordering: gameQuery?.sortOrder,
-            search: gameQuery?.searchText,
-          },
-        })
-        .then((res) => res.results),
+    queryFn: ({ pageParam = 1 }) =>
+      gameService.getAll({
+        params: {
+          genres: gameQuery?.genre?.id,
+          parent_platforms: gameQuery?.platform?.id,
+          ordering: gameQuery?.sortOrder,
+          search: gameQuery?.searchText,
+          page: pageParam,
+        },
+      }),
+    keepPreviousData: true,
+    getNextPageParam: (lastPage, allPages) => {
+      if (!allPages) {
+        console.log("first page");
+      }
+      return lastPage.next ? allPages.length + 1 : undefined;
+    },
   });
 };
 

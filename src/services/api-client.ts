@@ -7,9 +7,10 @@ const axiosInstance = axios.create({
   },
 });
 
-interface DataListResponse<T> {
+export interface DataListResponse<T> {
   count: number;
   results: T[];
+  next: string | null;
 }
 
 class ApiClient<T> {

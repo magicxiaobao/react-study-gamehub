@@ -1,35 +1,47 @@
-import { SimpleGrid, Text } from "@chakra-ui/react";
+import { Box, Button, SimpleGrid, Text } from "@chakra-ui/react";
 import useGames from "../hooks/UseGames.ts";
 import { GameCard } from "./GameCard.tsx";
 import { GameCardSkeleton } from "./GameCardSkeleton.tsx";
 import { GameCardContainer } from "./GameCardContainer.tsx";
 import { GameQuery } from "../App.tsx";
+import React from "react";
 
 interface Props {
   gameQuery: GameQuery | null;
 }
 
 export const GameGrid = ({ gameQuery }: Props) => {
-  const { data: games, error, isLoading } = useGames(gameQuery);
+  const {
+    data: games,
+    error,
+    isLoading,
+    isFetchingNextPage,
+    fetchNextPage,
+  } = useGames(gameQuery);
   const skeletonNums = [1, 2, 3, 4, 5, 6];
   if (error) return <Text>{error.message}</Text>;
   return (
-    <SimpleGrid
-      columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
-      padding="5"
-      spacing={6}
-    >
-      {isLoading &&
-        skeletonNums.map((s) => (
-          <GameCardContainer key={s}>
-            <GameCardSkeleton key={s} />
-          </GameCardContainer>
+    <Box padding="5">
+      <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={6}>
+        {isLoading &&
+          skeletonNums.map((s) => (
+            <GameCardContainer key={s}>
+              <GameCardSkeleton key={s} />
+            </GameCardContainer>
+          ))}
+        {games?.pages.map((page, index) => (
+          <React.Fragment key={index}>
+            {page.results.map((g) => (
+              <GameCardContainer key={g.id}>
+                <GameCard key={g.id} game={g} />
+              </GameCardContainer>
+            ))}
+          </React.Fragment>
         ))}
-      {games?.map((g) => (
-        <GameCardContainer key={g.id}>
-          <GameCard key={g.id} game={g} />
-        </GameCardContainer>
-      ))}
-    </SimpleGrid>
+      </SimpleGrid>
+      <Button onClick={() => fetchNextPage()} marginY={5}>
+        {isFetchingNextPage ? "Loading ..." : "Load More"}
+      </Button>
+    </Box>
   );
 };

@@ -1,7 +1,7 @@
-import { GameQuery } from "../App.tsx";
-import gameService, { Game } from "../services/gameService.ts";
-import { useInfiniteQuery } from "@tanstack/react-query";
-import { DataListResponse } from "../services/api-client.ts";
+import {GameQuery} from "../App.tsx";
+import gameService, {Game} from "../services/gameService.ts";
+import {useInfiniteQuery} from "@tanstack/react-query";
+import {DataListResponse} from "../services/api-client.ts";
 
 const useGames = (gameQuery: GameQuery | null) => {
   return useInfiniteQuery<
@@ -21,6 +21,7 @@ const useGames = (gameQuery: GameQuery | null) => {
         },
       }),
     keepPreviousData: true,
+    staleTime: 24 * 60 * 60 * 1000,
     getNextPageParam: (lastPage, allPages) => {
       if (!allPages) {
         console.log("first page");

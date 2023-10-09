@@ -1,8 +1,8 @@
-import platformService, { Platform } from "../services/platformService.ts";
-import { useQuery } from "@tanstack/react-query";
+import platformService, {Platform} from "../services/platformService.ts";
+import {useQuery} from "@tanstack/react-query";
 import initPlatforms from "../data/platforms.ts";
 
-const usePlatform = () => {
+const usePlatforms = () => {
   return useQuery<Platform[], Error, Platform[]>({
     queryKey: ["platforms"],
     queryFn: () => platformService.getAll().then((r) => r.results),
@@ -11,4 +11,4 @@ const usePlatform = () => {
   });
 };
 
-export default usePlatform;
+export default usePlatforms;

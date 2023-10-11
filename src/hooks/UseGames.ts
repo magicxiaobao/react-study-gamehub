@@ -1,10 +1,11 @@
-import {GameQuery} from "../App.tsx";
 import ms from 'ms'
 import gameService, {Game} from "../services/gameService.ts";
 import {useInfiniteQuery} from "@tanstack/react-query";
 import {DataListResponse} from "../services/api-client.ts";
+import useGameQueryStore from "../store/GameQueryStore.ts";
 
-const useGames = (gameQuery: GameQuery | null) => {
+const useGames = () => {
+  const {gameQuery} = useGameQueryStore();
   return useInfiniteQuery<
     DataListResponse<Game>,
     Error,

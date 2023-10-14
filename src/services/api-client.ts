@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from "axios";
+import axios, {AxiosRequestConfig} from "axios";
 
 const axiosInstance = axios.create({
   baseURL: "https://api.rawg.io/api",
@@ -24,6 +24,10 @@ class ApiClient<T> {
     return axiosInstance
       .get<DataListResponse<T>>(this.endpoint, config)
       .then((res) => res.data);
+  }
+
+  get(url: string) {
+    return axiosInstance.get<T>(this.endpoint + url).then(res => res.data)
   }
 }
 

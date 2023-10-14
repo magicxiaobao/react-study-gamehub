@@ -1,9 +1,11 @@
-import { Card, CardBody, Heading, HStack, Image } from "@chakra-ui/react";
-import { PlatformIconList } from "./PlatformIconList.tsx";
-import { CriticScore } from "./CriticScore.tsx";
+import {Card, CardBody, Heading, HStack, Image} from "@chakra-ui/react";
+import {PlatformIconList} from "./PlatformIconList.tsx";
+import {CriticScore} from "./CriticScore.tsx";
 import getCroppedImageUrl from "../services/image-url.ts";
-import { GameEmoji } from "./GameEmoji.tsx";
-import { Game } from "../services/gameService.ts";
+import {GameEmoji} from "./GameEmoji.tsx";
+import {Game} from "../services/gameService.ts";
+import {Link} from "react-router-dom";
+
 
 interface Props {
   game: Game;
@@ -20,7 +22,9 @@ export const GameCard = ({ game }: Props) => {
           />
           <CriticScore score={game.metacritic} />
         </HStack>
-        <Heading fontSize="2xl">{game.name}</Heading>
+        <Heading fontSize="2xl">
+          <Link to={'/games/' + game.slug}>{game.name}</Link>
+        </Heading>
         <GameEmoji rate={game.rating_top} />
       </CardBody>
     </Card>

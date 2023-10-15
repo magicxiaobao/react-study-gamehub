@@ -5,7 +5,7 @@ import useGameQueryStore from "../store/GameQueryStore.ts";
 import {useNavigate} from "react-router-dom";
 
 
-export const SearchInput = () => {
+const SearchInput = () => {
   const ref = useRef<HTMLInputElement>(null);
   const setSearchText = useGameQueryStore(state => state.setSearchText);
   const navigateFunction = useNavigate();
@@ -31,3 +31,5 @@ export const SearchInput = () => {
     </form>
   );
 };
+
+export default SearchInput

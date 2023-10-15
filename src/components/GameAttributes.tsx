@@ -1,13 +1,13 @@
 import {Game} from "../services/gameService.ts";
-import {DefinitionItem} from "./DefinitionItem.tsx";
+import DefinitionItem from "./DefinitionItem.tsx";
 import {SimpleGrid, Text} from "@chakra-ui/react";
-import {CriticScore} from "./CriticScore.tsx";
+import CriticScore from "./CriticScore.tsx";
 
 interface Props {
   game: Game
 }
 
-export const GameAttributes = ({game}: Props) => {
+const GameAttributes = ({game}: Props) => {
   return (
     <SimpleGrid columns={2} as="dl">
       <DefinitionItem term="Platforms">
@@ -25,3 +25,5 @@ export const GameAttributes = ({game}: Props) => {
     </SimpleGrid>
   );
 };
+
+export default GameAttributes

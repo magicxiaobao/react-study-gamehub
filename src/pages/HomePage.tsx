@@ -1,9 +1,9 @@
 import {Box, Grid, GridItem, HStack, Show} from "@chakra-ui/react";
-import {GenreList} from "../components/GenreList.tsx";
-import {GameHeading} from "../components/GameHeading.tsx";
-import {PlatformSelector} from "../components/PlatformSelector.tsx";
-import {SortSelector} from "../components/SortSelector.tsx";
-import {GameGrid} from "../components/GameGrid.tsx";
+import GenreList from "../components/GenreList.tsx";
+import GameHeading from "../components/GameHeading.tsx";
+import PlatformSelector from "../components/PlatformSelector.tsx";
+import SortSelector from "../components/SortSelector.tsx";
+import GameGrid from "../components/GameGrid.tsx";
 
 export const HomePage = () => {
   return (

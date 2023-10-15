@@ -3,7 +3,7 @@ import {BsChevronDown} from "react-icons/bs";
 import useGameQueryStore from "../store/GameQueryStore.ts";
 
 
-export const SortSelector = () => {
+const SortSelector = () => {
   const sortMap = [
     {value: "", label: "Relevance"},
     {value: "-added", label: "Date added"},
@@ -30,3 +30,5 @@ export const SortSelector = () => {
     </Menu>
   );
 };
+
+export default SortSelector

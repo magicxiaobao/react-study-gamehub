@@ -1,8 +1,8 @@
 import {Card, CardBody, Heading, HStack, Image} from "@chakra-ui/react";
-import {PlatformIconList} from "./PlatformIconList.tsx";
-import {CriticScore} from "./CriticScore.tsx";
+import PlatformIconList from "./PlatformIconList.tsx";
+import CriticScore from "./CriticScore.tsx";
 import getCroppedImageUrl from "../services/image-url.ts";
-import {GameEmoji} from "./GameEmoji.tsx";
+import GameEmoji from "./GameEmoji.tsx";
 import {Game} from "../services/gameService.ts";
 import {Link} from "react-router-dom";
 
@@ -11,7 +11,7 @@ interface Props {
   game: Game;
 }
 
-export const GameCard = ({ game }: Props) => {
+const GameCard = ({game}: Props) => {
   return (
     <Card>
       <Image src={getCroppedImageUrl(game.background_image)}></Image>
@@ -30,3 +30,5 @@ export const GameCard = ({ game }: Props) => {
     </Card>
   );
 };
+
+export default GameCard

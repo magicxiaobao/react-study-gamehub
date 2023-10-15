@@ -4,7 +4,7 @@ import useGenre from "../hooks/UseGenre.ts";
 import useGameQueryStore from "../store/GameQueryStore.ts";
 
 
-export const GameHeading = () => {
+const GameHeading = () => {
   const {data: platforms} = usePlatform()
   const genreId = useGameQueryStore(state => state.gameQuery.genreId);
   const platformId = useGameQueryStore(state => state.gameQuery.platformId);
@@ -20,3 +20,5 @@ export const GameHeading = () => {
     </Heading>
   );
 };
+
+export default GameHeading

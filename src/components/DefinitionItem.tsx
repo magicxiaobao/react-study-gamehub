@@ -6,7 +6,7 @@ interface Props {
   children: ReactNode | ReactNode[]
 }
 
-export const DefinitionItem = ({term, children}: Props) => {
+const DefinitionItem = ({term, children}: Props) => {
   return (
     <>
       <Box marginY={5}>
@@ -16,3 +16,5 @@ export const DefinitionItem = ({term, children}: Props) => {
     </>
   );
 };
+
+export default DefinitionItem

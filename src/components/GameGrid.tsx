@@ -1,13 +1,13 @@
 import {SimpleGrid, Spinner, Text} from "@chakra-ui/react";
 import useGames from "../hooks/UseGames.ts";
-import {GameCard} from "./GameCard.tsx";
-import {GameCardSkeleton} from "./GameCardSkeleton.tsx";
-import {GameCardContainer} from "./GameCardContainer.tsx";
+import GameCard from "./GameCard.tsx";
+import GameCardSkeleton from "./GameCardSkeleton.tsx";
+import GameCardContainer from "./GameCardContainer.tsx";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 
-export const GameGrid = () => {
+const GameGrid = () => {
 
   const {
     data: games,
@@ -51,3 +51,5 @@ export const GameGrid = () => {
     </InfiniteScroll>
   );
 };
+
+export default GameGrid

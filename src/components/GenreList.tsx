@@ -4,7 +4,7 @@ import getCroppedImageUrl from "../services/image-url.ts";
 import useGameQueryStore from "../store/GameQueryStore.ts";
 
 
-export const GenreList = () => {
+const GenreList = () => {
   const genreId = useGameQueryStore(state => state.gameQuery.genreId);
   const setGenreId = useGameQueryStore(state => state.setGenreId);
   const {data, isLoading, error} = useGenres();
@@ -45,3 +45,5 @@ export const GenreList = () => {
     </>
   );
 };
+
+export default GenreList

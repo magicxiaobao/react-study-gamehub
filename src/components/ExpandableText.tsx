@@ -5,7 +5,7 @@ interface Props {
   text: string
 }
 
-export const ExpandableText = ({text}: Props) => {
+const ExpandableText = ({text}: Props) => {
 
   const [expanded, setExpanded] = useState(false)
   const limit = 300
@@ -21,3 +21,5 @@ export const ExpandableText = ({text}: Props) => {
     </>
   );
 };
+
+export default ExpandableText

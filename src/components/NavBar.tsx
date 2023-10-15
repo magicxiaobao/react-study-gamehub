@@ -1,11 +1,11 @@
 import {HStack, Image} from "@chakra-ui/react";
 import logo from "../assets/logo.webp";
-import {ColorModeSwitch} from "./ColorModeSwitch.tsx";
-import {SearchInput} from "./SearchInput.tsx";
+import ColorModeSwitch from "./ColorModeSwitch.tsx";
+import SearchInput from "./SearchInput.tsx";
 import {Link} from "react-router-dom";
 
 
-export const NavBar = () => {
+const NavBar = () => {
   return (
     <HStack padding="10px">
       <Link to="/">
@@ -16,3 +16,5 @@ export const NavBar = () => {
     </HStack>
   );
 };
+
+export default NavBar

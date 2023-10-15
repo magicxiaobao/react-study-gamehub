@@ -1,6 +1,6 @@
-import { HStack, Switch, Text, useColorMode } from "@chakra-ui/react";
+import {HStack, Switch, Text, useColorMode} from "@chakra-ui/react";
 
-export const ColorModeSwitch = () => {
+const ColorModeSwitch = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
     <HStack>
@@ -13,3 +13,5 @@ export const ColorModeSwitch = () => {
     </HStack>
   );
 };
+
+export default ColorModeSwitch
